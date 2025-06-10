@@ -1,12 +1,11 @@
 """
-Auto Lock Timer Application - Android Compatible Version
+Auto Lock Timer Application - Portrait Mode
 Copyright (c) 2025 Ahmed Selim Salama
 All rights reserved.
 """
 
 import kivy
 from kivy.config import Config
-# تعديل الإعدادات للطول (Portrait)
 Config.set('graphics', 'width', '360')
 Config.set('graphics', 'height', '640')
 Config.set('graphics', 'orientation', 'portrait')
@@ -30,7 +29,7 @@ import platform
 
 class AutoLockApp(App):
     """
-    Auto Lock Timer Application - Android Compatible
+    Auto Lock Timer Application - Portrait Mode
     Developer: Ahmed Selim Salama
     """
     
@@ -43,14 +42,12 @@ class AutoLockApp(App):
         self.load_settings()
         
     def build(self):
-        # ScrollView للتأكد من ظهور كل المحتوى
         scroll = ScrollView(do_scroll_x=False, do_scroll_y=True)
         
-        # التخطيط الرئيسي
         main_layout = BoxLayout(
             orientation='vertical', 
-            padding=[20, 20, 20, 20], 
-            spacing=20,
+            padding=[15, 20, 15, 20], 
+            spacing=15,
             size_hint_y=None
         )
         main_layout.bind(minimum_height=main_layout.setter('height'))
@@ -59,39 +56,48 @@ class AutoLockApp(App):
         header_layout = BoxLayout(
             orientation='vertical',
             size_hint_y=None,
-            height=120,
+            height=100,
             spacing=5
         )
         
         title = Label(
             text='Auto Lock Timer Pro',
-            font_size='24sp',
+            font_size='22sp',
             color=(1, 1, 1, 1),
             bold=True,
             size_hint_y=None,
-            height=50
+            height=40
         )
         
         subtitle = Label(
             text='Smart Device Protection System',
-            font_size='14sp',
+            font_size='12sp',
             color=(0.8, 0.8, 0.8, 1),
             size_hint_y=None,
-            height=30
+            height=25
         )
         
         copyright_label = Label(
             text='Copyright (c) 2025 Ahmed Selim Salama',
-            font_size='10sp',
+            font_size='9sp',
             color=(0.6, 0.6, 0.6, 1),
             size_hint_y=None,
-            height=25
+            height=20
         )
         
         header_layout.add_widget(title)
         header_layout.add_widget(subtitle)
         header_layout.add_widget(copyright_label)
         main_layout.add_widget(header_layout)
+        
+        # خط فاصل
+        separator1 = Label(
+            text='=' * 30,
+            color=(0.5, 0.5, 0.5, 1),
+            size_hint_y=None,
+            height=15
+        )
+        main_layout.add_widget(separator1)
         
         # قسم إعدادات الوقت
         time_section = BoxLayout(
@@ -122,7 +128,8 @@ class AutoLockApp(App):
         time_input_layout.add_widget(Label(
             text='Hour:',
             color=(0.8, 0.8, 0.8, 1),
-            size_hint_x=0.2
+            font_size='14sp',
+            size_hint_x=0.25
         ))
         
         self.hour_input = TextInput(
@@ -132,14 +139,16 @@ class AutoLockApp(App):
             background_color=(0.3, 0.3, 0.3, 1),
             foreground_color=(1, 1, 1, 1),
             font_size='16sp',
-            size_hint_x=0.3
+            size_hint_x=0.25,
+            halign='center'
         )
         time_input_layout.add_widget(self.hour_input)
         
         time_input_layout.add_widget(Label(
             text='Minute:',
             color=(0.8, 0.8, 0.8, 1),
-            size_hint_x=0.2
+            font_size='14sp',
+            size_hint_x=0.25
         ))
         
         self.minute_input = TextInput(
@@ -149,12 +158,22 @@ class AutoLockApp(App):
             background_color=(0.3, 0.3, 0.3, 1),
             foreground_color=(1, 1, 1, 1),
             font_size='16sp',
-            size_hint_x=0.3
+            size_hint_x=0.25,
+            halign='center'
         )
         time_input_layout.add_widget(self.minute_input)
         
         time_section.add_widget(time_input_layout)
         main_layout.add_widget(time_section)
+        
+        # خط فاصل
+        separator2 = Label(
+            text='=' * 30,
+            color=(0.5, 0.5, 0.5, 1),
+            size_hint_y=None,
+            height=15
+        )
+        main_layout.add_widget(separator2)
         
         # قسم التحكم
         control_section = BoxLayout(
@@ -185,7 +204,7 @@ class AutoLockApp(App):
         switch_layout.add_widget(Label(
             text='Enable Auto Lock:',
             color=(0.9, 0.9, 0.9, 1),
-            font_size='16sp',
+            font_size='14sp',
             size_hint_x=0.7
         ))
         
@@ -199,22 +218,41 @@ class AutoLockApp(App):
         control_section.add_widget(switch_layout)
         main_layout.add_widget(control_section)
         
+        # خط فاصل
+        separator3 = Label(
+            text='=' * 30,
+            color=(0.5, 0.5, 0.5, 1),
+            size_hint_y=None,
+            height=15
+        )
+        main_layout.add_widget(separator3)
+        
         # أزرار العمليات
         buttons_section = BoxLayout(
             orientation='vertical',
             size_hint_y=None,
-            height=120,
+            height=170,
             spacing=10
         )
+        
+        buttons_title = Label(
+            text='Actions',
+            font_size='18sp',
+            color=(0.9, 0.9, 1, 1),
+            bold=True,
+            size_hint_y=None,
+            height=30
+        )
+        buttons_section.add_widget(buttons_title)
         
         save_btn = Button(
             text='Save Settings',
             background_color=(0.2, 0.8, 0.3, 1),
             color=(1, 1, 1, 1),
-            font_size='16sp',
+            font_size='14sp',
             bold=True,
             size_hint_y=None,
-            height=50
+            height=45
         )
         save_btn.bind(on_press=self.save_timer_settings)
         buttons_section.add_widget(save_btn)
@@ -223,21 +261,42 @@ class AutoLockApp(App):
             text='Test Notification',
             background_color=(0.2, 0.6, 0.9, 1),
             color=(1, 1, 1, 1),
-            font_size='16sp',
+            font_size='14sp',
             bold=True,
             size_hint_y=None,
-            height=50
+            height=45
         )
         notification_btn.bind(on_press=self.test_notification)
         buttons_section.add_widget(notification_btn)
         
+        info_btn = Button(
+            text='App Info',
+            background_color=(0.6, 0.4, 0.8, 1),
+            color=(1, 1, 1, 1),
+            font_size='14sp',
+            bold=True,
+            size_hint_y=None,
+            height=45
+        )
+        info_btn.bind(on_press=self.show_app_info)
+        buttons_section.add_widget(info_btn)
+        
         main_layout.add_widget(buttons_section)
+        
+        # خط فاصل
+        separator4 = Label(
+            text='=' * 30,
+            color=(0.5, 0.5, 0.5, 1),
+            size_hint_y=None,
+            height=15
+        )
+        main_layout.add_widget(separator4)
         
         # قسم الحالة
         status_section = BoxLayout(
             orientation='vertical',
             size_hint_y=None,
-            height=200,
+            height=220,
             spacing=10
         )
         
@@ -254,11 +313,11 @@ class AutoLockApp(App):
         self.status_label = Label(
             text=self.get_status_text(),
             color=(0.8, 0.9, 1, 1),
-            font_size='12sp',
+            font_size='11sp',
             halign='center',
             valign='top',
             size_hint_y=None,
-            height=160
+            height=180
         )
         self.status_label.bind(width=lambda *x: self.status_label.setter('text_size')(self.status_label, (self.status_label.width, None)))
         
@@ -286,7 +345,6 @@ class AutoLockApp(App):
         return 0
     
     def on_timer_switch(self, instance, value):
-        """تفعيل أو إلغاء تفعيل المؤقت"""
         self.is_timer_active = value
         if value:
             self.start_timer()
@@ -296,7 +354,6 @@ class AutoLockApp(App):
             self.show_notification("Timer Disabled", "Timer deactivated")
     
     def save_timer_settings(self, instance):
-        """حفظ إعدادات المؤقت"""
         try:
             hour = int(self.hour_input.text) if self.hour_input.text else 23
             minute = int(self.minute_input.text) if self.minute_input.text else 0
@@ -314,13 +371,14 @@ class AutoLockApp(App):
                 'minute': minute,
                 'developer': 'Ahmed Selim Salama',
                 'copyright': '2025 Ahmed Selim Salama - All rights reserved',
-                'platform': platform.system()
+                'platform': platform.system(),
+                'version': '2.1'
             }
             
             with open(self.settings_file, 'w', encoding='utf-8') as f:
                 json.dump(settings, f, ensure_ascii=False, indent=2)
             
-            self.show_popup("Success", f"Settings saved!\nLock time: {self.scheduled_time}")
+            self.show_popup("Success", f"Settings saved successfully!\nLock time: {self.scheduled_time}")
             
             if self.is_timer_active:
                 self.start_timer()
@@ -329,7 +387,6 @@ class AutoLockApp(App):
             self.show_popup("Error", "Please enter valid numbers")
     
     def load_settings(self):
-        """تحميل الإعدادات المحفوظة"""
         try:
             if os.path.exists(self.settings_file):
                 with open(self.settings_file, 'r', encoding='utf-8') as f:
@@ -342,11 +399,11 @@ class AutoLockApp(App):
             self.is_timer_active = False
     
     def start_timer(self):
-        """بدء المؤقت"""
         if not self.scheduled_time:
             return
             
         self.stop_timer()
+        self.is_timer_active = True
         
         self.timer_thread = threading.Thread(target=self.run_timer, daemon=True)
         self.timer_thread.start()
@@ -354,12 +411,10 @@ class AutoLockApp(App):
         print(f"Timer started for: {self.scheduled_time}")
     
     def stop_timer(self):
-        """إيقاف المؤقت"""
         self.is_timer_active = False
         print("Timer stopped")
     
     def run_timer(self):
-        """تشغيل المؤقت"""
         while self.is_timer_active:
             now = datetime.now()
             current_time = now.strftime("%H:%M")
@@ -368,28 +423,26 @@ class AutoLockApp(App):
                 self.execute_lock_sequence()
                 break
                 
-            time.sleep(30)  # فحص كل 30 ثانية
+            time.sleep(30)
     
     def execute_lock_sequence(self):
-        """تنفيذ تسلسل القفل"""
         try:
             self.show_notification(
                 "Auto Lock Activated", 
-                "Device protection sequence initiated"
+                "Device protection sequence initiated by Ahmed Selim Salama App"
             )
-            
-            # على الأندرويد، نرسل إشعار بس
-            # لأن قفل الجهاز محتاج صلاحيات خاصة
             
         except Exception as e:
             print(f"Error in lock sequence: {e}")
     
     def test_notification(self, instance):
-        """اختبار الإشعارات"""
-        self.show_notification("Test Notification", "Notifications are working correctly!")
+        self.show_notification("Test Notification", "Notifications are working correctly!\nApp by Ahmed Selim Salama")
+    
+    def show_app_info(self, instance):
+        info_text = "Auto Lock Timer Pro v2.1\n\nDeveloper: Ahmed Selim Salama\nCopyright: 2025\nPlatform: " + platform.system() + "\n\nThis app helps protect your device by scheduling automatic notifications at specified times."
+        self.show_popup("App Information", info_text)
     
     def show_notification(self, title, message):
-        """عرض إشعار"""
         try:
             notification.notify(
                 title=title,
@@ -401,13 +454,12 @@ class AutoLockApp(App):
             print(f"Notification error: {e}")
     
     def show_popup(self, title, message):
-        """عرض نافذة منبثقة"""
         content = BoxLayout(orientation='vertical', padding=15, spacing=10)
         
         message_label = Label(
             text=message, 
             color=(1, 1, 1, 1),
-            font_size='14sp',
+            font_size='12sp',
             halign='center',
             valign='middle'
         )
@@ -428,7 +480,7 @@ class AutoLockApp(App):
         popup = Popup(
             title=title,
             content=content,
-            size_hint=(0.8, 0.4),
+            size_hint=(0.85, 0.5),
             auto_dismiss=False
         )
         
@@ -436,14 +488,13 @@ class AutoLockApp(App):
         popup.open()
     
     def get_status_text(self):
-        """الحصول على نص الحالة الحالية"""
         platform_info = f"Platform: {platform.system()}"
         
         if not self.is_timer_active:
-            return f"Timer Status: DISABLED\n\nThe auto-lock feature is off.\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama"
+            return f"Timer Status: DISABLED\n\nThe auto-lock feature is currently turned off.\nEnable the timer to activate protection.\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama\nVersion 2.1"
         
         if not self.scheduled_time:
-            return f"Timer Status: NO TIME SET\n\nPlease set a time.\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama"
+            return f"Timer Status: NO TIME SET\n\nPlease set a lock time and save settings.\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama\nVersion 2.1"
         
         now = datetime.now()
         current_time = now.strftime("%H:%M:%S")
@@ -459,18 +510,18 @@ class AutoLockApp(App):
             hours, remainder = divmod(time_remaining.seconds, 3600)
             minutes, seconds = divmod(remainder, 60)
             
-            return f"Timer Status: ACTIVE\n\nCurrent: {current_time}\nScheduled: {self.scheduled_time}\nRemaining: {hours:02d}:{minutes:02d}:{seconds:02d}\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama"
+            return f"Timer Status: ACTIVE\n\nCurrent Time: {current_time}\nScheduled Time: {self.scheduled_time}\nTime Remaining: {hours:02d}:{minutes:02d}:{seconds:02d}\n\nYour device will receive a notification at the scheduled time.\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama\nVersion 2.1"
             
         except Exception as e:
-            return f"Timer Status: ERROR\n\n{e}\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama"
+            return f"Timer Status: ERROR\n\nTime calculation error: {e}\n\n{platform_info}\n\nDeveloped by Ahmed Selim Salama\nVersion 2.1"
     
     def update_status(self, dt):
-        """تحديث نص الحالة"""
         self.status_label.text = self.get_status_text()
 
 if __name__ == '__main__':
-    print("Auto Lock Timer Application - Android Compatible")
+    print("Auto Lock Timer Application - Portrait Mode")
     print("Copyright (c) 2025 Ahmed Selim Salama")
     print("Platform:", platform.system())
+    print("Version: 2.1")
     print("=" * 50)
     AutoLockApp().run()
