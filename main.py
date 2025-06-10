@@ -6,8 +6,10 @@ All rights reserved.
 
 import kivy
 from kivy.config import Config
+# تعديل الإعدادات للطول (Portrait)
 Config.set('graphics', 'width', '360')
 Config.set('graphics', 'height', '640')
+Config.set('graphics', 'orientation', 'portrait')
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
