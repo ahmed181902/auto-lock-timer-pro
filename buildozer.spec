@@ -4,13 +4,10 @@ package.name = autolockpro
 package.domain = com.ahmedselimsalama
 source.dir = .
 source.include_exts = py,png,jpg,kv,atlas
-version = 2.1
+version = 2.0
 requirements = python3,kivy,plyer
-android.permissions = WAKE_LOCK,WRITE_EXTERNAL_STORAGE,POST_NOTIFICATIONS
 orientation = portrait
-android.orientation = portrait
-android.orientations = portrait
-fullscreen = 0
+android.permissions = WAKE_LOCK,WRITE_EXTERNAL_STORAGE,POST_NOTIFICATIONS,SYSTEM_ALERT_WINDOW,DEVICE_ADMIN,MODIFY_AUDIO_SETTINGS,CHANGE_WIFI_STATE,KILL_BACKGROUND_PROCESSES,DISABLE_KEYGUARD
 
 [buildozer]
 log_level = 2
